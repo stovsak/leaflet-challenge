@@ -32,3 +32,14 @@ function createMap(earthquakes) {
         accessToken: API_KEY
     });
 }
+    // Create baseMaps to hold layers
+    var baseMaps = {
+        "Satelite Map": satelitemap,
+        "Dark Map": darkmap
+    };
+
+    // Create the overlayMaps to hold earthquakes
+    var overlayMaps = {
+        "Earthquakes": earthquakes
+    };
+    
