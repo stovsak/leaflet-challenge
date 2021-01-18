@@ -42,4 +42,16 @@ function createMap(earthquakes) {
     var overlayMaps = {
         "Earthquakes": earthquakes
     };
+
+    // Create map for earthquakes and satelite layers
+    var myMap = L.map("map", {
+        center: [0,0],
+        zoom: 2,
+        layers: [satelitemap, earthquakes]
+    });
+
+    // Create and add the layer control for maps
+    L.control.layers(baseMaps, overlayMaps, {
+        collapsed: false
+    }).addTo(myMap);
     
