@@ -77,3 +77,27 @@ function createMap(earthquakes) {
 }
 
 // Create Marker function
+
+function createMarkers(response) {
+
+    var earthquakes = response.features;
+    var earthquakeMarkers = []
+
+    for (var index = 0; index < earthquakes.length; index++) {
+        var earthquake = earthquakes[index];
+
+        var marker = L.circleMarker([ earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0] ], {
+            radius: earthquake.properties.mag * 2,
+            fillColor: markerColor(earthquake.properties.mag),
+            fillOpacity: 0.75,
+            stroke: false
+        }
+        ).bindPopup("<h4>" + earthquake.properties.place + "</h4><hr><p>" + new Date (earthquake.properties.time) + "</p>" + "<p><b>Magnitude: " +  earthquake.properties.mag + "<b></p>");
+    
+        earthquakeMarkers.push(marker);
+    }
+    createMap(L.layerGroup(earthquakeMarkers));
+}
+
+// API call to USGS API
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geohjson", createMarkers);
