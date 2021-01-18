@@ -31,7 +31,7 @@ function createMap(earthquakes) {
         id: "mapbox.dark",
         accessToken: API_KEY
     });
-}
+
     // Create baseMaps to hold layers
     var baseMaps = {
         "Satelite Map": satelitemap,
@@ -54,4 +54,26 @@ function createMap(earthquakes) {
     L.control.layers(baseMaps, overlayMaps, {
         collapsed: false
     }).addTo(myMap);
-    
+
+    // Create Legend
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = () => {
+        var div = L.DomUtil.create('div', 'info legend');
+        var magnitudes = [4.75, 5.0, 5.25, 5.75];
+
+        magnitudes.forEach(m => {
+            var range = `${m} - ${m+.25}`;
+            if (m >= 5.75) {range = `${m}+`}
+            var html = `<div class="legend-item">
+                  <div style+"height: 25px; width: 25px; background-color:${markerColor(m)}"> </div>
+                  <div class=legend-text>Magnitude:-<strong${range}</strong></div>
+            </div>`
+            div.innerHTML += html
+        });
+        return div;
+    };
+    legend.addTo(myMap);
+}
+
+// Create Marker function
