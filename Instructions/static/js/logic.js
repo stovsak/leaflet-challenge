@@ -18,14 +18,14 @@ function markerColor(mag) {
 function createMap(earthquakes) {
 
     // Create 2 tile layer options for the map
-    var satelitemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    var satelitemap = L.tileLayer("https://api.tiles.mapbox.com/styles/v4/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
         id: "mapbox.satellite",
         accessToken: API_KEY
     });
 
-    var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    var darkmap = L.tileLayer("https://api.tiles.mapbox.com/styles/v4/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
         id: "mapbox.dark",
@@ -45,7 +45,7 @@ function createMap(earthquakes) {
 
     // Create map for earthquakes and satelite layers
     var myMap = L.map("map", {
-        center: [0,0],
+        center: [37.773972, -122.431297],
         zoom: 2,
         layers: [satelitemap, earthquakes]
     });
