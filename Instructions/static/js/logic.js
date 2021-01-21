@@ -63,7 +63,7 @@ function createMap(earthquakes) {
         var magnitudes = [4.75, 5.0, 5.25, 5.75];
 
         magnitudes.forEach(m => {
-            var range = `${m} - ${m+.25}`;
+            var range = `${m} - ${m+0.25}`;
             if (m >= 5.75) {range = `${m}+`}
             var html = `<div class="legend-item">
                   <div style+"height: 25px; width: 25px; background-color:${markerColor(m)}"> </div>
